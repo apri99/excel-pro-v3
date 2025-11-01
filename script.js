@@ -19,6 +19,32 @@ let data = [
   }
 ];
 
+function renderTable() {
+  const tbody = document.getElementById("data-body");
+  tbody.innerHTML = "";
+  data.forEach(row => {
+    const tr = document.createElement("tr");
+    Object.values(row).forEach(val => {
+      const td = document.createElement("td");
+      td.textContent = val;
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+}
+
+function updateDashboard() {
+  const totalTransaksi = data.length;
+  const totalItem = data.reduce((sum, row) => sum + Number(row.qty || 0), 0);
+  const totalOmset = data.reduce((sum, row) => sum + Number(row.total || 0), 0);
+  const uangKurang = data.filter(row => String(row.kembalian).toLowerCase().includes("kurang")).length;
+
+  document.getElementById("total-transaksi").textContent = totalTransaksi;
+  document.getElementById("total-item").textContent = totalItem;
+  document.getElementById("total-omset").textContent = totalOmset.toLocaleString("id-ID");
+  document.getElementById("uang-kurang").textContent = uangKurang;
+}
+
 function simpanData() {
   localStorage.setItem("excelProDB", JSON.stringify(data));
   const csv = convertToCSV(data);
@@ -42,16 +68,7 @@ function simpanData() {
   updateDashboard();
 }
 
-function updateDashboard() {
-  const totalTransaksi = data.length;
-  const totalItem = data.reduce((sum, row) => sum + Number(row.qty || 0), 0);
-  const totalOmset = data.reduce((sum, row) => sum + Number(row.total || 0), 0);
-  const uangKurang = data.filter(row => String(row.kembalian).toLowerCase().includes("kurang")).length;
-
-  document.getElementById("total-transaksi").textContent = totalTransaksi;
-  document.getElementById("total-item").textContent = totalItem;
-  document.getElementById("total-omset").textContent = totalOmset.toLocaleString("id-ID");
-  document.getElementById("uang-kurang").textContent = uangKurang;
-}
-
-
+document.addEventListener("DOMContentLoaded", () => {
+  renderTable();
+  updateDashboard();
+});
