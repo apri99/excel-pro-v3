@@ -11,6 +11,15 @@
 <body>
   <h1>excel-pro v3</h1>
 
+  <form id="form-input">
+    <input type="text" placeholder="Nama" id="input-nama" required />
+    <input type="number" placeholder="Qty" id="input-qty" required />
+    <input type="number" placeholder="Harga" id="input-harga" required />
+    <input type="text" placeholder="Satuan" id="input-satuan" required />
+    <input type="number" placeholder="Dibayar" id="input-dibayar" required />
+    <button type="submit">➕ Tambah Transaksi</button>
+  </form>
+
   <div id="dashboard">
     <div class="card">🧾 Total Transaksi: <span id="total-transaksi">0</span></div>
     <div class="card">📦 Total Item: <span id="total-item">0</span></div>
@@ -41,5 +50,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
-
