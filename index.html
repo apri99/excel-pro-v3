@@ -12,12 +12,28 @@
   <h1>excel-pro v3</h1>
 
   <form id="form-input">
-    <input type="text" placeholder="Nama" id="input-nama" required />
-    <input type="number" placeholder="Qty" id="input-qty" required />
-    <input type="number" placeholder="Harga" id="input-harga" required />
-    <input type="text" placeholder="Satuan" id="input-satuan" required />
-    <input type="number" placeholder="Dibayar" id="input-dibayar" required />
-    <button type="submit">➕ Tambah Transaksi</button>
+    <table>
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Qty</th>
+          <th>Harga</th>
+          <th>Satuan</th>
+          <th>Dibayar</th>
+          <th>➕</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" id="input-nama" required /></td>
+          <td><input type="number" id="input-qty" required /></td>
+          <td><input type="number" id="input-harga" required /></td>
+          <td><input type="text" id="input-satuan" required /></td>
+          <td><input type="number" id="input-dibayar" required /></td>
+          <td><button type="submit">➕</button></td>
+        </tr>
+      </tbody>
+    </table>
   </form>
 
   <div id="dashboard">
