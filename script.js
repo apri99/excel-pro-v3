@@ -1,19 +1,4 @@
-let data = [
-  {
-    nama: "beras",
-    qty: 10,
-    harga: 10000,
-    satuan: "kg",
-    dibayar: 120000
-  },
-  {
-    nama: "sabun",
-    qty: 2,
-    harga: 5000,
-    satuan: "pcs",
-    dibayar: 5000
-  }
-];
+let data = [];
 
 function hitung(row) {
   row.total = row.qty * row.harga;
@@ -24,7 +9,7 @@ function hitung(row) {
 function renderTable() {
   const tbody = document.getElementById("data-body");
   tbody.innerHTML = "";
-  data.forEach((row, i) => {
+  data.forEach(row => {
     const hasil = hitung(row);
     const tr = document.createElement("tr");
     ["nama", "qty", "harga", "satuan", "total", "dibayar", "kembalian"].forEach(key => {
@@ -72,9 +57,21 @@ function simpanData() {
   updateDashboard();
 }
 
+document.getElementById("form-input").addEventListener("submit", e => {
+  e.preventDefault();
+  const nama = document.getElementById("input-nama").value;
+  const qty = Number(document.getElementById("input-qty").value);
+  const harga = Number(document.getElementById("input-harga").value);
+  const satuan = document.getElementById("input-satuan").value;
+  const dibayar = Number(document.getElementById("input-dibayar").value);
+
+  data.push({ nama, qty, harga, satuan, dibayar });
+  renderTable();
+  updateDashboard();
+  e.target.reset();
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   renderTable();
   updateDashboard();
 });
-
-
