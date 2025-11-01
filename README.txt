@@ -1,57 +1,61 @@
-excel-pro v3: Aplikasi Kasir Modular ala Excel
-==============================================
+ 🧮 **excel-pro v3** — Aplikasi Kasir Modular & Inheritable
 
-📦 Struktur Folder
-------------------
-excel-pro-v3/
-├── index.html             → Tampilan utama aplikasi
-├── style.css              → Styling responsif untuk Windows & tablet
-├── script.js              → Logika kasir: tambah, hapus, simpan, validasi
-├── manifest.json          → Konfigurasi PWA
-├── service-worker.js      → Cache & offline mode
-├── assets/
-│   ├── logo.png           → Branding toko
-│   └── favicon.ico        → Ikon browser
-├── utils/
-│   ├── export-csv.js      → Export transaksi ke CSV
-│   └── sync-wa.js         → Kirim data ke WhatsApp
-└── README.txt             → Dokumentasi & SOP tim
+> 💼 Dibangun untuk kasir warung, toko, dan tim komunitas  
+> 📦 Siap digunakan offline, bisa di-install sebagai PWA  
+> 🧾 Ekspor otomatis ke CSV, siap dibuka di Excel  
+> 📊 Dilengkapi dashboard visual dan pop-up notifikasi
 
-🧩 Fitur Utama
---------------
-- Grid 8 kolom: ✔ Nama, Qty, Harga, Satuan, Total, Dibayar, Kembalian
-- Validasi otomatis per baris
-- LocalStorage modular
-- Sync ke WhatsApp (nomor editable)
-- Export CSV
-- PWA stabil & offline-ready
-- Branding kanan atas: 4pri@disamsu
+---
 
-🛠️ Cara Pakai
--------------
-1. Salin semua file ke Notepad++
-2. Simpan dalam folder bernama `excel-pro-v3`
-3. Zip folder tersebut
-4. Upload ke Netlify
-5. Buka di browser dan install sebagai PWA
+## 🎯 Fitur Utama
 
-🔄 SOP Reset & Backup
----------------------
-- Reset data transaksi:
-  Buka console browser dan jalankan:
-  `localStorage.removeItem("excelProDB")`
+- 💾 Simpan data transaksi ke `transaksi.csv`
+- 📤 Ekspor otomatis ke folder `Downloads`
+- 📊 Dashboard visual: total transaksi, omset, item, uang kurang
+- 📱 Bisa di-install sebagai aplikasi desktop (PWA)
+- 🧮 Header default seperti Excel:
+Nama | Qty | Harga | Satuan | Total | Dibayar | Kembalian
 
-- Backup transaksi:
-  Klik tombol "📄 CSV" untuk unduh file `transaksi.csv`
+Code
 
-📤 WhatsApp Sync
-----------------
-- Klik tombol "📤 WA"
-- Masukkan nomor tujuan (tanpa +62)
-- Pesan akan terbuka di tab baru
+---
 
-🧼 Prinsip Modular
-------------------
-- Semua file terpisah dan inheritable
-- Tidak ada library eksternal
-- Siap diaudit, diajarkan, dan diwariskan ke tim
+## ⚙️ Cara Pakai
+
+1. Buka `index.html` di browser (Chrome/Edge)
+2. Klik “Install” untuk menjadikan aplikasi desktop
+3. Input data → klik “💾 Simpan & Backup”
+4. File `transaksi.csv` otomatis tersimpan di folder `Downloads`
+5. Buka Excel → link ke file → aktifkan refresh otomatis
+
+---
+
+## 🧱 Struktur Folder
+excel-pro-v3/ ├── index.html ├── style.css ├── script.js ├── convert-csv.js ├── manifest.json ├── service-worker.js ├── icon_192.png
+
+Code
+
+---
+
+## 🌟 Branding Warisan
+
+> 🔰 **Nama Unik:**  
+> 🎨 `4pri@disamsu`  
+> 💡 *Modular. Jujur. Bisa diwariskan.*
+
+> 🟢 Warna utama: `#4caf50` (Hijau kasir)  
+> 🔵 Warna dashboard: `#e0f7fa` (Header Excel-style)  
+> ⚪ Warna latar: `#f5f5f5` (Netral warung)
+
+> 🧾 Tagline:  
+> *“Satu klik, semua rapi.”*
+
+---
+
+## 📬 Kontak & Dukungan
+
+- Dibangun oleh Om Apri & tim WarungDigital99  
+- Untuk dukungan, silakan kirim WA via tombol di aplikasi  
+- Semua file bisa disalin ke Notepad++ dan diunggah ke GitHub
+
+---
