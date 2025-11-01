@@ -4,32 +4,42 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>excel-pro v3</title>
-  <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-  <header>
-    <div style="display: flex; align-items: center;">
-      <img src="assets/logo.png" alt="Logo" />
-      <h1>excel-pro v3</h1>
-    </div>
-    <span class="branding">4pri@disamsu</span>
-  </header>
+  <h1>excel-pro v3</h1>
 
-  <main>
-    <section id="kasir-grid"></section>
-  </main>
+  <div id="dashboard">
+    <div class="card">🧾 Total Transaksi: <span id="total-transaksi">0</span></div>
+    <div class="card">📦 Total Item: <span id="total-item">0</span></div>
+    <div class="card">💰 Total Omset: Rp <span id="total-omset">0</span></div>
+    <div class="card">⚠️ Uang Kurang: <span id="uang-kurang">0</span></div>
+  </div>
 
-  <footer>
-    <button onclick="addRow()">➕ Tambah</button>
-    <button onclick="deleteSelected()">🗑️ Hapus</button>
-    <button onclick="syncToWA()">📤 WA</button>
-    <button onclick="exportCSV()">📄 CSV</button>
-    <button onclick="downloadBackup()">📦 Backup</button>
-  </footer>
+  <table id="kasir-table">
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>Qty</th>
+        <th>Harga</th>
+        <th>Satuan</th>
+        <th>Total</th>
+        <th>Dibayar</th>
+        <th>Kembalian</th>
+      </tr>
+    </thead>
+    <tbody id="data-body"></tbody>
+  </table>
 
+  <button onclick="simpanData()">💾 Simpan & Backup</button>
+
+  <script src="convert-csv.js"></script>
   <script src="script.js"></script>
-  <script src="utils/export-csv.js"></script>
-  <script src="utils/sync-wa.js"></script>
+  <footer>
+  <p><strong>Branding:</strong> <span style="color:#4caf50">4pri@disamsu</span> — Modular. Jujur. Bisa diwariskan.</p>
+</footer>
+
 </body>
 </html>
