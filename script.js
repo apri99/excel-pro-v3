@@ -4,29 +4,32 @@ let data = [
     qty: 10,
     harga: 10000,
     satuan: "kg",
-    total: 100000,
-    dibayar: 120000,
-    kembalian: 20000
+    dibayar: 120000
   },
   {
     nama: "sabun",
     qty: 2,
     harga: 5000,
     satuan: "pcs",
-    total: 10000,
-    dibayar: 5000,
-    kembalian: "Uang kurang"
+    dibayar: 5000
   }
 ];
+
+function hitung(row) {
+  row.total = row.qty * row.harga;
+  row.kembalian = row.dibayar >= row.total ? row.dibayar - row.total : "Uang kurang";
+  return row;
+}
 
 function renderTable() {
   const tbody = document.getElementById("data-body");
   tbody.innerHTML = "";
-  data.forEach(row => {
+  data.forEach((row, i) => {
+    const hasil = hitung(row);
     const tr = document.createElement("tr");
-    Object.values(row).forEach(val => {
+    ["nama", "qty", "harga", "satuan", "total", "dibayar", "kembalian"].forEach(key => {
       const td = document.createElement("td");
-      td.textContent = val;
+      td.textContent = hasil[key];
       tr.appendChild(td);
     });
     tbody.appendChild(tr);
@@ -36,8 +39,8 @@ function renderTable() {
 function updateDashboard() {
   const totalTransaksi = data.length;
   const totalItem = data.reduce((sum, row) => sum + Number(row.qty || 0), 0);
-  const totalOmset = data.reduce((sum, row) => sum + Number(row.total || 0), 0);
-  const uangKurang = data.filter(row => String(row.kembalian).toLowerCase().includes("kurang")).length;
+  const totalOmset = data.reduce((sum, row) => sum + (row.qty * row.harga), 0);
+  const uangKurang = data.filter(row => row.dibayar < row.qty * row.harga).length;
 
   document.getElementById("total-transaksi").textContent = totalTransaksi;
   document.getElementById("total-item").textContent = totalItem;
@@ -46,8 +49,9 @@ function updateDashboard() {
 }
 
 function simpanData() {
-  localStorage.setItem("excelProDB", JSON.stringify(data));
-  const csv = convertToCSV(data);
+  const hasil = data.map(hitung);
+  localStorage.setItem("excelProDB", JSON.stringify(hasil));
+  const csv = convertToCSV(hasil);
   localStorage.setItem("excelProCSV", csv);
 
   const blob = new Blob([csv], { type: "text/csv" });
@@ -72,3 +76,5 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTable();
   updateDashboard();
 });
+
+
